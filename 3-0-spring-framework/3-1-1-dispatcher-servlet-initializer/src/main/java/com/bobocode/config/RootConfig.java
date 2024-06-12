@@ -15,5 +15,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * todo: enable component scanning for all packages in "com.bobocode"
  * todo: ignore all web related config and beans (ignore @{@link Controller}, ignore {@link EnableWebMvc}) using exclude filter
  */
+@Configuration
+@ComponentScan(basePackages = "com.bobocode",
+        excludeFilters =
+                {@Filter(value = {EnableWebMvc.class}),
+                        @Filter(value = {Controller.class})}
+)
 public class RootConfig {
 }
