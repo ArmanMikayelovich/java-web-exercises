@@ -5,6 +5,7 @@ import com.bobocode.model.Account;
 import com.bobocode.service.AccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.stereotype.Component;
 
 /**
  * This is a demo application. It uses Spring to create an application context based on the configuration you provided
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  * it will get a "bean" (an object) of a {@link AccountService} from the context. That bean is used to find the richest
  * account and show that everything is working as expected.
  */
+@Component
 public class AccountServiceDemoApp {
     public static void main(String[] args) {
         ApplicationContext context = initializeSpringContext();
