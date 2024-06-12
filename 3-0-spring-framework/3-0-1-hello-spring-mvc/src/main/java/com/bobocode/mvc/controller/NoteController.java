@@ -1,7 +1,16 @@
 package com.bobocode.mvc.controller;
 
 import com.bobocode.mvc.data.Notes;
+import com.bobocode.mvc.model.Note;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * {@link NoteController} is a typical controller that powers Spring MVC Notes application. This application provides
@@ -27,9 +36,21 @@ import lombok.RequiredArgsConstructor;
  * the same controller will look like {@link com.bobocode.mvc.api.NoteRestController}
  */
 @RequiredArgsConstructor
+@Controller
+@RequestMapping("/notes")
 public class NoteController {
     private final Notes notes;
 
-    // TODO: implement controller methods according to the javadoc and verify your impl using NoteControllerTest
+    @GetMapping
+    public String getNotes(Model model) {
 
+        model.addAttribute("noteList", notes.getAll());
+        return "notes";
+    }
+
+    @PostMapping()
+    public String addNote(Note note) {
+        notes.add(note);
+        return "redirect:/notes";
+    }
 }
