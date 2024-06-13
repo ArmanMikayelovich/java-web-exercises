@@ -1,6 +1,7 @@
 package com.bobocode;
 
 import com.bobocode.annotation.Trimmed;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,18 @@ import org.springframework.stereotype.Component;
  * {@link StringTrimmingConfiguration} class which can be imported to a {@link Configuration} class by annotation
  * {@link EnableStringTrimming}
  */
-public class TrimmedAnnotationBeanPostProcessor {
+
+public class TrimmedAnnotationBeanPostProcessor implements BeanPostProcessor{
 //todo: Implement TrimmedAnnotationBeanPostProcessor according to javadoc
+
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        if (bean instanceof String) {
+            return bean.toString().trim();
+        } else {
+            return bean;
+        }
+
+    }
 }
